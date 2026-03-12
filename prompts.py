@@ -32,15 +32,24 @@ Generate a paragraph with those points
 debate_creation_prompt="""You are the organiser of the debate and there are 2 parties to debate.
 The topic is {topic}
 If there is topic
- - you have to split the topic into two so that both parties can be assigned their topics.
- - return list of two topics with good description.
-else consider the previous arguments are:{previous_arguments} 
-which were the arguments given by the debaters on theme:{original_theme}
- - Now you go through the arguments and theme.
- - Based on the arguments tweak the themes which bring other perspectives,angles on the theme
-   so the debaters can further debate on those themes and come up with more arguments.
- - return list of two topics with good description.
-example output:[TOPIC1,TOPIC2]
+ - Identify the two sides of the topic (example: Rohit vs Kohli, T20 vs Test)
+ - Assign one side to Debater A and the other side to Debater B
+ - Return two topics — one per debater — each with small description of their side 
+else:
+ - The original theme is: {original_theme}
+ - The previous arguments were: {previous_arguments}
+ - The two sides from the original theme are already established — DO NOT switch or mix them
+ - Find a NEW ANGLE or ASPECT of the same original theme that has NOT been argued yet
+ - Examples of new angles: leadership, consistency, performance under pressure, 
+   legacy, adaptability, record in specific formats, etc.
+ - Assign the same original side to each debater on this new angle
+ - Example: if Round 1 was "Rohit vs Kohli as batsmen", Round 2 should be 
+   "Rohit vs Kohli as captains", Round 3 "Rohit vs Kohli under pressure" and so on
+ - IMPORTANT: Debater A always argues for the SAME side they had in Round 1
+ - IMPORTANT: Debater B always argues for the SAME side they had in Round 1
+ - Return two topics — one per debater — on this new angle
+
+Return format: [DEBATER_A_TOPIC, DEBATER_B_TOPIC]
 """
 
 judgement_prompt="""You are an experienced judge.
