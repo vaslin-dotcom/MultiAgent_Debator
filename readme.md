@@ -85,6 +85,12 @@ Each agent runs this SUBGRAPH independently:
 
 ---
 
+## 🏗️ Architecture
+![Debate Graph](debate_graph.png)
+```
+
+---
+
 ## 🚀 Getting Started
 
 **1. Clone the repo**
