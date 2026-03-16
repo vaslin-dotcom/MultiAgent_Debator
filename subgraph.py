@@ -34,10 +34,11 @@ def regeneration_node(state: debaterState):
     regeneration_result=regeneration_llm.invoke(Regeneration_prompt.format(
         opp_argument=state['opp_arguments'],
         my_points=state['my_generation'],
+        topic=state['topic'],
         research_points=research_output
     ))
     return{
-        **state,'my_arguments':regeneration_result.content,
+        **state,'my_arguments':[regeneration_result.content],
         'tool_query':[],
         'tool_output':[],
         'my_generation':''
